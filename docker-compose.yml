@@ -1,0 +1,21 @@
+networks:
+  internal:
+    name: internal
+
+services:
+  patient-service-db:
+    image: postgres:latest
+    container_name: patient-service-db
+    environment:
+      POSTGRES_USER: admin_user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+    ports:
+      - "5000:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - internal
+
+volumes:
+  postgres_data:
