@@ -18,6 +18,7 @@ public class KafkaProducer {
         PatientEvent patientEvent = PatientEvent.newBuilder().setPatientId(patient.getId().toString()).setName(patient.getName()).setEmail(patient.getEmail()).setEventTye("PATIENT_CREATED").build();
         try{
             kafkaTemplate.send("patient",patientEvent.toByteArray());
+            log.info("Sent Succefully by producer :{}",patientEvent);
         }catch (Exception e){
             log.error("Error sending PatientCreated event :{}",patientEvent);
         }
